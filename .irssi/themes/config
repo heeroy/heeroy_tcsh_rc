@@ -1,0 +1,394 @@
+servers = (
+  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
+  {
+    address = "irc.flexnet.org";
+    chatnet = "FlexNet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  IRCnet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "5";
+    max_whois = "4";
+    max_query_chans = "5";
+  };
+  EFNet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "4";
+    max_msgs = "3";
+    max_whois = "1";
+  };
+  Undernet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "3";
+    max_whois = "30";
+  };
+  DALnet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "6";
+    max_msgs = "3";
+    max_whois = "30";
+  };
+  freenode = {
+    type = "IRC";
+    max_kicks = "4";
+    max_msgs = "1";
+    max_modes = "4";
+    max_whois = "1";
+  };
+  GIMPNet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "4";
+    max_msgs = "3";
+    max_whois = "1";
+  };
+  PTlink = {
+    type = "IRC";
+    max_kicks = "1";
+    max_modes = "6";
+    max_msgs = "30";
+    max_whois = "1";
+  };
+  SorceryNet = {
+    type = "IRC";
+    max_kicks = "30";
+    max_modes = "6";
+    max_msgs = "30";
+    max_whois = "30";
+  };
+  Hashmark = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "3";
+    max_whois = "30";
+  };
+  PTnet = {
+    type = "IRC";
+    max_kicks = "30";
+    max_modes = "13";
+    max_msgs = "10";
+    max_whois = "30";
+  };
+  AzzurraNET = {
+    type = "IRC";
+    max_kicks = "4";
+    max_modes = "6";
+    max_msgs = "3";
+  };
+  SILC = { type = "SILC"; };
+  QuakeNet = { type = "IRC"; };
+  KreyNet = { type = "IRC"; };
+  IRCNet2 = { type = "IRC"; };
+  HybNet = { type = "IRC"; };
+  IRCNet6 = { type = "IRC"; };
+  FlexNet = { type = "IRC"; };
+  bsdfreaks = { type = "IRC"; };
+  FlexTest = { type = "IRC"; };
+  FlexHUB = { type = "IRC"; };
+};
+
+channels = (
+  { name = "#FlexNet"; chatnet = "FlexNet"; autojoin = "yes"; },
+);
+
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "msg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say Irssi $J (http://irssi.org) Theme (http://angelic.flexnet.org)";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  UPTIME = "eval exec - expr `date +%s` - \\$F | awk '{print \"Irssi uptime: \"int(\\\\\\$1/3600/24)\"d \"int(\\\\\\$1/3600%24)\"h \"int(\\\\\\$1/60%60)\"m \"int(\\\\\\$1%60)\"s\" }'";
+  CALC = "exec - if which bc &>/dev/null\\; then echo '$*' | bc | awk '{print \"$*=\"$$1}'\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  lagsens = "set lag_check_time 1s; set lag_min_show 0.01s; echo Lag meter set Ultra Sensitive";
+  lagnorm = "set lag_check_time 10s; set lag_min_show 1s; echo Lag meter set normal";
+  laglow = "set lag_check_time 30s; set lag_min_show 5s; echo Lag meter set lo w";
+  ahelp = "echo [\002Angelic\002] Theme specific help; echo test2";
+
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  g = "window goto $0";
+  u = "window goto 36";
+  noa = "/window goto =noa";
+  followon = "script load follow";
+  followoff = "script unload follow";
+  saveall = "/layout save; /savefr; /save";
+  thnx = "/say dziêkuje";
+  figlet = "/exec -o - figlet $*";
+  bsay = "/exec -o - figlet $*";
+  nup = "nicklist scroll -25";
+  nd = "/nicklist scroll +25";
+  s = "say =)";
+  bc = "foreach window $*;echo BROADCAST: All channels: $*";
+  silent = "hide target add $0";
+  silence = "hide target add $0;echo Silenced channel \002$0\002, only hilights will be notified.";
+  unsilence = "hide target remove $0;echo Unsilenced channel \002$0\002, activity will be visable again.";
+  gbc = "foreach window $*;echo BROADCAST: GLOBAL: $*";
+  output = "exec -o - $*;say output from: $*";
+  quit = "echo \002Fail-Safe\002: If you really mean it use //quit";
+  opers = "window goto #opers";
+  invited = "exec - echo $* >> ~/txt/invited.txt";
+  bsd = "window goto #bsdfreaks ";
+  disconnect = "echo \002Fail-Safe\002: If you really mean it use //disconnect";
+  server = "server +$*;echo \002Multi-Server\002: Joining $*";
+  r = "redraw";
+  url = "exec - url $*";
+  flex = "/msg -flexnet #FlexNet $*";
+  nu = "/nicklist scroll -25";
+};
+
+statusbar = {
+  # formats:
+  # when using {templates}, the template is shown only if it's argument isn't
+  # empty unless no argument is given. for example {sb} is printed always,
+  # but {sb $T} is printed only if $T isn't empty.
+
+  items = {
+    # start/end text in statusbars
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+
+    topicbarstart = "{topicsbstart}";
+    topicbarend = "{topicsbend}";
+
+    # treated "normally", you could change the time/user name to whatever
+    #time = "{sb $Z}";
+    time = "{sb %C$Z%n}";
+    #user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+    #user = "{sb %W$cumode%n%w$N%n{sbmode %W$usermode%n}%W$itemname%n(%c+%n$M)}";
+    user = "{sb Nick:%W$cumode%n$N{sbmode (%W$usermode%n)}}";
+
+    # treated specially .. window is printed with non-empty windows,
+    # window_empty is printed with empty windows
+    #window = "{sb $winref:$itemname{sbmode $M}}";
+    window = "%c[%n{sbmode $itemname: (%W$M%n)}{sbaway $A}%c]%n ";
+    #window = "{sb Win:$winref} {sbaway $A} ";
+    window_empty = "{sb %wWindow%K:%W $winref {sbservertag %w$tag}}";
+    #prompt = "{prompt $[.15]itemname}";
+    prompt = "{prompt $Z}";
+    #prompt_empty = "{prompt $winname}";
+    #prompt = "%w[%W$itemname%w] ";
+    #prompt = "";
+    prompt_empty = "<%W$winname%n> ";
+    topic = "%w[%WAngelic%w]%n $topic";
+    topic_empty = " %WmIRSSI%n v$J - http://irssi.org/help/";
+
+    # all of these treated specially, they're only displayed when needed
+    #lag = "{sb Lagging $0- seconds!}";
+    lag = "{sb Lag: %R$0- }";
+    act = "{sb Act: $0-}";
+    more = "-- more --";
+  };
+
+  # there's two type of statusbars. root statusbars are either at the top
+  # of the screen or at the bottom of the screen. window statusbars are at
+  # the top/bottom of each split window in screen.
+  default = {
+    # the "default statusbar" to be displayed at the bottom of the window.
+    # contains all the normal items.
+    window = {
+
+      # window, root
+      type = "window";
+      # top, bottom
+      placement = "bottom";
+      # number
+      position = "0";
+      # active, inactive, always
+      visible = "active";
+
+      # list of items in statusbar in the display order
+      items = {
+        barstart = { priority = "100"; };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+        usercount = { };
+      };
+      disabled = "yes";
+    };
+
+    # statusbar to use in inactive split windows
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # we treat input line as yet another statusbar :) It's possible to
+    # add other items before or after the input line item.
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      # we want to be at the bottom always
+      position = "100";
+      visible = "always";
+      items = {
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        # treated specially, this is the real input line.
+        input = { priority = "10"; };
+      };
+    };
+
+    # topicbar
+    topic = {
+      type = "root";
+      placement = "top";
+      position = "1";
+      visible = "always";
+      items = {
+        topicbarstart = { priority = "100"; };
+        topic = { };
+        topic_empty = { };
+        topicbarend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    info1 = {
+      items = {
+        user = { };
+        cmode = { };
+        rotator = { };
+        window = { };
+        lag = { };
+        act = { };
+      };
+      position = "10";
+      placement = "bottom";
+    };
+    info2 = {
+      items = { more = { }; upgradeinfo = { }; loadavg = { }; act = { }; };
+      position = "0";
+      disabled = "yes";
+    };
+    window2 = {
+      items = {
+        usercount = { };
+        window_empty = { };
+        loadavg = { };
+        mailcount = { };
+      };
+    };
+    info = { position = "0"; placement = "top"; disabled = "yes"; };
+    info3 = {
+      position = "0";
+      placement = "top";
+      items = { loadavg = { }; hitcount = { }; nact = { }; lag = { }; };
+      disabled = "yes";
+    };
+    add = { disabled = "yes"; };
+    window1 = { disabled = "yes"; };
+  };
+};
+settings = {
+  core = {
+    real_name = "Angelic Irssi Theme http://angelic.flexnet.org";
+    user_name = "test";
+    nick = "Angelic";
+  };
+  "irc/core" = {
+    alternate_nick = "testing";
+    lag_check_time = "60s";
+    ctcp_version_reply = "Irssi v$J (Angelic Theme) - \002use the force.";
+  };
+  "fe-common/core" = {
+    theme = "angelic2";
+    activity_hide_level = "            KICK MODE  TOPIC NICK  QUIT CLIENTNOTICE CLIENTCRAP SNOTICE JOIN PART CRAP CLIENTCRAP";
+    timestamps = "yes";
+    timestamp_level = "ALL";
+    hilight_color = "%M";
+    autolog = "yes";
+    autolog_path = "~/storage/irclogs/$tag/$0.log";
+  };
+  "perl/core/scripts" = {
+    nicklist_prefix_mode_op = "\\e[34m@\\e[0m\\e[39m";
+    usercount_show_halfops = "no";
+    rotator_chars = "%K%C-%k________%k %k_%k%C-%k_______%k %k__%k%C-%k______%k %k___%k%C-%k_____ %k____%k%C-%k____%k %k_____%K%C-%k___%k %k______%k%C-%k__%k %k_______%k%C-%k_%k %k________%k%C-%k";
+    rotator_speed = "150";
+    mailcount_info_level = "0";
+    mailcount_check_ofset = "120";
+    friends_autosave = "yes";
+    loadavg_refresh = "30000";
+    hitcount_refresh = "3600";
+    nact_devices = "eth0";
+    nact_unit = "0";
+    away_allow_channels = "#Cannabis";
+    away_order_channels = "allow";
+    autoaway_timeout = "900";
+  };
+  "fe-text" = {
+    lag_min_show = "1s";
+    scrollback_lines = "2000";
+    paste_verify_line_count = "2";
+  };
+  "irc/dcc" = {
+    dcc_download_path = "~";
+    dcc_autoget = "yes";
+    dcc_autoget_masks = "*@*";
+  };
+  "fe-common/irc" = { show_away_once = "no"; };
+};
+logs = {
+  };
+};
+notifies = { };
+hilights = (
+);
+ignores = (
+);
+windows = { 1 = { immortal = "yes"; name = "(status)"; level = "ALL"; }; };
+mainwindows = { 1 = { first_line = "1"; lines = "24"; }; };

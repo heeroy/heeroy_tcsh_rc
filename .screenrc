@@ -1,0 +1,119 @@
+# cjk width
+cjkwidth on
+# utf8 settings
+defutf8 on
+defc1 off
+#defencoding big5
+defencoding utf8
+
+#bind b encoding big5 utf8 # Ctrl-a b 轉 Big5
+#bind u encoding utf8 utf8 # Ctrl-a u 轉 UTF-8
+
+# 256 Color Support
+term xterm
+termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+attrcolor i "+b"
+
+# erase background with current bg color
+defbce on
+
+# heeroy's personal settings
+#autodetach		on		# default: on
+width -w 96
+screen -t freenode
+#screen -t 星光 2 env LANG=C LC_ALL=en_US.ISO8859-1 noidle
+screen -t Star 
+screen -t csup
+screen -t tcsh
+#hardstatus alwayslastline "\033[0;44;37m %y/%m/%d %c:%s \033[0;47;34m%w \033[0m"
+#hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+#hardstatus alwayslastline "%{= wk} %{bW} %H %{wk} | %-Lw%{kw}◣%{= Y}%n%f* %t%{kw}◢%{wk}%+Lw%< %= %{kw}◣%{= C} [%y/%m/%d %c:%s] %{-}"
+hardstatus alwayslastline "%{= wk} %{bW} %H %{wk} | %-Lw%{kw}\%{= Y}%n%f* %t%{kw}/%{wk}%+Lw%< %= %{kw}\%{= C} [%y/%m/%d %c:%s] %{-}"
+#activity		"activity in %n (%t) [%w:%s]~"
+#bell			"bell     in %n (%t) [%w:%s]~"
+#crlf			off		# default: off
+#deflogin		off		# default: on
+#hardcopy_append	on		# default: off
+#startup_message	on		# default: on
+#termcap  xterm	'AF=\E[3%dm:AB=\E[4%dm'
+#terminfo xterm	'AF=\E[3%p1%dm:AB=\E[4%p1%dm'
+#vbell			off		# default: ???
+defscrollback		1000		# default: 100
+#silencewait		15		# default: 30
+#pow_detach_msg	"BYE"
+bind P paste .
+bind ~ activity	"activity in %n (%t) [%w:%s]~"
+bind * activity	"activity in %n (%t) [%w:%s]"
+bind V screen -t 'vim' 0 vim
+bind X lockscreen
+#msgwait 1
+#version
+#msgwait 2
+#echo "welcome :-)"
+# all termcap entries are now duplicated as terminfo entries.
+# only difference should be the slightly modified syntax, and check for
+# terminfo entries, that are already corected in the database.
+#
+# G0    we have a SEMI-GRAPHICS-CHARACTER-MODE
+# WS    this sequence resizes our window.
+# cs    this sequence changes the scrollregion
+# hs@   we have no hardware statusline. screen will only believe that
+#       there is a hardware status line if hs,ts,fs,ds are all set.
+# ts    to statusline
+# fs    from statusline
+# ds    delete statusline
+# al    add one line
+# AL    add multiple lines
+# dl    delete one line
+# DL    delete multiple lines
+# ic    insert one char (space)
+# IC    insert multiple chars
+# nx    terminal uses xon/xoff
+
+#termcap  facit|vt100|xterm LP:G0
+#terminfo facit|vt100|xterm LP:G0
+
+#the vt100 description does not mention "dl". *sigh*
+#termcap  vt100 dl=5\E[M
+#terminfo vt100 dl=5\E[M
+
+#facit's "al" / "dl"  are buggy if the current / last line
+#contain attributes...
+#termcap  facit al=\E[L\E[K:AL@:dl@:DL@:cs=\E[%i%d;%dr:ic@
+#terminfo facit al=\E[L\E[K:AL@:dl@:DL@:cs=\E[%i%p1%d;%p2%dr:ic@
+
+#make sun termcap/info better
+#termcap  sun 'up=^K:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC:IC=\E[%d@:WS=1000\E[8;%d;%dt'
+#terminfo sun 'up=^K:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC:IC=\E[%p1%d@:WS=\E[8;%p1%d;%p2%dt$<1000>'
+
+#xterm understands both im/ic and doesn't have a status line.
+#Note: Do not specify im and ic in the real termcap/info file as
+#some programs (e.g. vi) will (no,no, may (jw)) not work anymore.
+#termcap  xterm|fptwist hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l
+#terminfo xterm|fptwist hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l
+
+# Long time I had this in my private screenrc file. But many people
+# seem to want it (jw):
+# we do not want the width to change to 80 characters on startup:
+# on suns, /etc/termcap has :is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l:
+#termcap xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+#terminfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+#
+# Do not use xterms alternate window buffer.
+# This one would not add lines to the scrollback buffer.
+#termcap xterm|xterms|xs ti=\E7\E[?47l
+#terminfo xterm|xterms|xs ti=\E7\E[?47l
+#
+#make hp700 termcap/info better
+#termcap  hp700 'Z0=\E[?3h:Z1=\E[?3l:hs:ts=\E[62"p\E[0$~\E[2$~\E[1$}:fs=\E[0}\E[61"p:ds=\E[62"p\E[1$~\E[61"p:ic@'
+#terminfo hp700 'Z0=\E[?3h:Z1=\E[?3l:hs:ts=\E[62"p\E[0$~\E[2$~\E[1$}:fs=\E[0}\E[61"p:ds=\E[62"p\E[1$~\E[61"p:ic@'
+
+#wyse-75-42 must have defflow control (xo = "terminal uses xon/xoff")
+#(nowadays: nx = padding doesn't work, have to use xon/off)
+#essential to have it here, as this is a slow terminal.
+#termcap wy75-42 nx:xo:Z0=\E[?3h\E[31h:Z1=\E[?3l\E[31h
+#terminfo wy75-42 nx:xo:Z0=\E[?3h\E[31h:Z1=\E[?3l\E[31h
